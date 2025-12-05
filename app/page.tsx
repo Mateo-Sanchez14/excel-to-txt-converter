@@ -27,8 +27,8 @@ export default function Home() {
       setSheets(wb.SheetNames);
       setSelectedSheet(wb.SheetNames[0]);
     } catch (error) {
-      console.error('Error reading file:', error);
-      alert('Error reading file. Please make sure it is a valid Excel file.');
+      console.error('Error al leer el archivo:', error);
+      alert('Error al leer el archivo. Por favor asegúrate de que sea un archivo Excel válido.');
     } finally {
       setIsProcessing(false);
     }
@@ -50,8 +50,8 @@ export default function Home() {
       const converted = convertExcelToText(jsonData);
       setConvertedText(converted);
     } catch (error) {
-      console.error('Error converting:', error);
-      alert('Error converting file.');
+      console.error('Error al convertir:', error);
+      alert('Error al convertir el archivo.');
     } finally {
       setIsProcessing(false);
     }
@@ -84,17 +84,17 @@ export default function Home() {
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <h1 className="text-4xl font-bold text-gray-800 mb-2">
-            Excel to Text Converter
+            Convertidor de Excel a Texto
           </h1>
           <p className="text-gray-600 mb-8">
-            Upload an Excel file, select a sheet, and convert it to formatted text
+            Sube un archivo Excel, selecciona una hoja y conviértela a texto formateado
           </p>
 
           <div className="space-y-6">
             {/* File Upload */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Upload Excel File
+                Subir Archivo Excel
               </label>
               <div className="flex items-center gap-4">
                 <label className="flex-1">
@@ -119,10 +119,10 @@ export default function Home() {
                       />
                     </svg>
                     <p className="mt-2 text-sm text-gray-600">
-                      {file ? file.name : 'Click to upload or drag and drop'}
+                      {file ? file.name : 'Haz clic para subir o arrastra y suelta'}
                     </p>
                     <p className="text-xs text-gray-500 mt-1">
-                      XLSX, XLS, or CSV
+                      XLSX, XLS o CSV
                     </p>
                   </div>
                 </label>
@@ -131,7 +131,7 @@ export default function Home() {
                     onClick={resetForm}
                     className="px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                   >
-                    Clear
+                    Limpiar
                   </button>
                 )}
               </div>
@@ -141,7 +141,7 @@ export default function Home() {
             {sheets.length > 0 && (
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Select Sheet
+                  Seleccionar Hoja
                 </label>
                 <select
                   value={selectedSheet}
@@ -164,7 +164,7 @@ export default function Home() {
                 disabled={isProcessing}
                 className="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
               >
-                {isProcessing ? 'Processing...' : 'Convert to Text'}
+                {isProcessing ? 'Procesando...' : 'Convertir a Texto'}
               </button>
             )}
 
@@ -173,7 +173,7 @@ export default function Home() {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label className="block text-sm font-medium text-gray-700">
-                    Converted Output
+                    Salida Convertida
                   </label>
                   <button
                     onClick={handleDownload}
@@ -192,7 +192,7 @@ export default function Home() {
                         d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                       />
                     </svg>
-                    Download TXT
+                    Descargar TXT
                   </button>
                 </div>
                 <textarea
@@ -206,7 +206,7 @@ export default function Home() {
         </div>
 
         <footer className="text-center mt-8 text-gray-600 text-sm">
-          <p>Modern conversion tool built with Next.js, TypeScript & Tailwind CSS</p>
+          <p>Herramienta de conversión moderna construida con Next.js, TypeScript y Tailwind CSS</p>
         </footer>
       </div>
     </main>
