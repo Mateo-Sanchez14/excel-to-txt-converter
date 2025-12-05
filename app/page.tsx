@@ -41,11 +41,11 @@ export default function Home() {
 
     try {
       const worksheet = workbook.Sheets[selectedSheet];
-      const jsonData: unknown[][] = XLSX.utils.sheet_to_json(worksheet, {
+      const jsonData = XLSX.utils.sheet_to_json(worksheet, {
         header: 1,
         raw: false,
         defval: ''
-      });
+      }) as (string | number | Date | boolean | null | undefined)[][];
 
       const converted = convertExcelToText(jsonData);
       setConvertedText(converted);
