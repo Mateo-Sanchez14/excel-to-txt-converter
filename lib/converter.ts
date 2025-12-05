@@ -67,8 +67,23 @@ function formatDate(value: CellValue): string {
     // Excel serial date
     date = excelSerialToDate(value);
   } else {
-    const str = String(value).replace(/-/g, '/');
-    date = new Date(str);
+    const str = String(value).trim();
+
+    // Check if it's already in DD/MM/YYYY or D/M/YYYY format
+    const datePattern = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+    const match = str.match(datePattern);
+
+    if (match) {
+      // Parse as DD/MM/YYYY
+      const day = parseInt(match[1]);
+      const month = parseInt(match[2]) - 1; // JavaScript months are 0-indexed
+      const year = parseInt(match[3]);
+      date = new Date(year, month, day);
+    } else {
+      // Try other formats
+      const normalized = str.replace(/-/g, '/');
+      date = new Date(normalized);
+    }
   }
 
   if (isNaN(date.getTime())) return String(value);
