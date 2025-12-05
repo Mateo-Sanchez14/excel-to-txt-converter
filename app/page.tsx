@@ -25,7 +25,13 @@ export default function Home() {
       const wb = XLSX.read(data);
       setWorkbook(wb);
       setSheets(wb.SheetNames);
-      setSelectedSheet(wb.SheetNames[0]);
+
+      // Prefer "con codigos" sheet if it exists, otherwise use first sheet
+      const preferredSheet = wb.SheetNames.find(name =>
+        name.toLowerCase().includes('con codigos') || name.toLowerCase().includes('con códigos')
+      ) || wb.SheetNames[0];
+
+      setSelectedSheet(preferredSheet);
     } catch (error) {
       console.error('Error al leer el archivo:', error);
       alert('Error al leer el archivo. Por favor asegúrate de que sea un archivo Excel válido.');

@@ -25,15 +25,15 @@ function formatCell(value: CellValue, columnIndex: number): string {
       return formatInteger(value);
     case 1: // Column 2: Decimal with 2 places
       return formatDecimal(value, 2);
-    case 5: // Column 6: Date
+    case 6: // Column 7: Date (Fecha Fact.)
       return formatDate(value);
-    case 6: // Column 7: Invoice 13 digits
+    case 7: // Column 8: Invoice 13 digits (Factura N°)
       return formatInvoice(value, 13);
-    case 8: // Column 9: Decimal with 2 places
+    case 8: // Column 9: Decimal with 2 places (Precio)
       return formatDecimal(value, 2);
-    case 9: // Column 10: Date
+    case 9: // Column 10: Date (Fecha Consignado)
       return formatDate(value);
-    case 10: // Column 11: Invoice 12 digits
+    case 10: // Column 11: Invoice 12 digits (Remito)
       return formatInvoice(value, 12);
     default:
       return String(value);
